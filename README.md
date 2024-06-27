@@ -1,0 +1,2 @@
+# wangyanzu.com
+hugo pages
