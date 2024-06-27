@@ -1,0 +1,41 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main  # 或者是你的源代码分支
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+          submodules: true
+          fetch-depth: 0
+
+    - name: Set up Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: "latest"
+
+    - name: Build and Deploy
+      run: |
+        hugo -F --cleanDestinationDir  # 生成静态文件
+        # mkdir -p public  # 确保public文件夹存在
+        # cp -r public/* ./  # 复制生成的静态文件到仓库根目录
+
+    - name: scp ssh pipelines
+      uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+      env:
+        LASTSSH: "Success"
+      with:
+        host: ${{ secrets.DC_HOST }}
+        user: ${{ secrets.DC_USER }}
+        pass: ${{ secrets.DC_PASS }}
+        scp: |
+          ./public/* => /opt/wwwroot/wangyanzu
+        last_ssh: |
+          echo $LASTSSH 
