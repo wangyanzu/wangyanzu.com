@@ -35,6 +35,7 @@ jobs:
         host: ${{ secrets.DC_HOST }}
         user: ${{ secrets.DC_USER }}
         pass: ${{ secrets.DC_PASS }}
+        port: ${{ secrets.DC_PORT }}
         scp: |
           ./public/* => /opt/wwwroot/wangyanzu
         last_ssh: |
