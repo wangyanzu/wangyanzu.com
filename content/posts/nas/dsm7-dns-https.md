@@ -1,0 +1,74 @@
+---
+title: "使用dns验证的群晖https证书自动续期"
+date: 2024-06-27T23:30:00+00:00
+# weight: 1
+# aliases: ["/first"]
+tags:
+- 群晖
+- dsm
+- lego
+categories:
+- nas
+author: "WANG"
+# author: ["Me", "You"] # multiple authors
+showToc: true
+TocOpen: false
+draft: false
+hidemeta: false
+comments: false
+description: "cloudflare"
+canonicalURL: "https://canonical.url/to/page"
+disableHLJS: true # to disable highlightjs
+disableShare: false
+disableHLJS: false
+hideSummary: false
+searchHidden: true
+ShowReadingTime: true
+ShowBreadCrumbs: true
+ShowPostNavLinks: true
+ShowWordCount: true
+ShowRssButtonInSectionTermList: true
+UseHugoToc: true
+cover:
+    image: "<image path/url>" # image path/url
+    alt: "<alt text>" # alt text
+    caption: "<text>" # display caption under cover
+    relative: false # when using page bundles set this to true
+    hidden: true # only hide on current single page
+editPost:
+    URL: "https://github.com/<path_to_repo>/content"
+    Text: "Suggest Changes" # edit text
+    appendFilePath: true # to append file path to Edit link
+---
+## 安装lego
+### 下载
+在github获取相应平台软件 [lego release](https://github.com/go-acme/lego/releases)
+### 解压安装
+为了方便使用，将解压的`lego`文件复制到`/usr/local/bin/`
+## 创建更新任务
+### 新建脚本文件
+本例中使用cloudflare dns演示，[更多dns服务商](https://go-acme.github.io/lego/dns/)
+```shell
+#!/bin/bash
+export CLOUDFLARE_DNS_API_TOKEN=* # 此处替换为本人的token
+DOMAIN="nas.wangyanzu.com"
+LEGO_CERT_PATH=".lego/certificates"
+
+lego --email i@wangyanzux.com --dns cloudflare --domains $DOMAIN run
+
+SYNOLOGY_CERTIFICATE_PATH="/usr/syno/etc/certificate"
+SYNOLOGY_DEFAULT_CERTIFICATE_NAME=$(cat "${SYNOLOGY_CERTIFICATE_PATH}/_archive/DEFAULT" | tr -d "\n")
+SYNOLOGY_DEFAULT_CERTIFICATE_PATH="${SYNOLOGY_CERTIFICATE_PATH}/_archive/${SYNOLOGY_DEFAULT_CERTIFICATE_NAME}"
+
+# /bin/sh -c "cp '${LEGO_CERT_PATH}/fullchain.cer' ${SYNOLOGY_DEFAULT_CERTIFICATE_PATH}/fullchain.pem"
+/bin/sh -c "cp '${LEGO_CERT_PATH}/${DOMAIN}.crt' ${SYNOLOGY_DEFAULT_CERTIFICATE_PATH}/fullchain.pem"
+/bin/sh -c "cp '${LEGO_CERT_PATH}/${DOMAIN}.crt' ${SYNOLOGY_DEFAULT_CERTIFICATE_PATH}/cert.pem"
+/bin/sh -c "cp '${LEGO_CERT_PATH}/${DOMAIN}.key' ${SYNOLOGY_DEFAULT_CERTIFICATE_PATH}/privkey.pem"
+
+synow3tool --gen-all
+synow3tool --nginx=reload
+```
+### 创建定时任务
+因为let's encrypt 证书有效期为3个月，所以每周执行一次更新脚本即可
+`cd /volume2/data/app && bash cert_update.sh`
+![new task](new-task.png)

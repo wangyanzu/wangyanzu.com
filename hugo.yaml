@@ -1,5 +1,5 @@
 baseURL: "https://www.wangyanzu.com/"
-title: wangyanzuSite
+title: WANG
 paginate: 10
 theme: PaperMod
 
@@ -14,8 +14,8 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: wangyanzuSite
-  description: "wangyanzuSite description"
+  title: WANG BLOG
+  description: "WANG'S BLOG "
   keywords: [Blog, wangyanzu]
   author: WANG
   # author: ["Me", "You"] # multiple authors
