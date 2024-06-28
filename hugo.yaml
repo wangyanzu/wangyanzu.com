@@ -113,6 +113,10 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
+    - identifier: archives
+      name: archives
+      url: /archives/
+      weight: 1
     - identifier: categories
       name: categories
       url: /categories/

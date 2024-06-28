@@ -1,5 +1,5 @@
 ---
-title: "使用scan命令进行redis数据迁移"
+title: "使用scan进行redis数据迁移"
 date: 2024-06-28T17:30:00+08:00
 # weight: 1
 # aliases: ["/first"]
@@ -16,7 +16,7 @@ TocOpen: false
 draft: false
 hidemeta: false
 comments: false
-description: "通过scan命令进行redis数据迁移"
+description: "通过scan进行redis数据迁移"
 canonicalURL: "https://canonical.url/to/page"
 disableHLJS: true # to disable highlightjs
 disableShare: false
@@ -30,11 +30,11 @@ ShowWordCount: true
 ShowRssButtonInSectionTermList: true
 UseHugoToc: true
 cover:
-    image: "<image path/url>" # image path/url
-    alt: "<alt text>" # alt text
+    image: "posts/redis/logo.png" # image path/url
+    alt: "redis-logo" # alt text
     caption: "<text>" # display caption under cover
-    relative: false # when using page bundles set this to true
-    hidden: true # only hide on current single page
+    relative: true # when using page bundles set this to true
+    hidden: false # only hide on current single page
 # editPost:
 #     URL: "https://github.com/<path_to_repo>/content"
 #     Text: "Suggest Changes" # edit text
