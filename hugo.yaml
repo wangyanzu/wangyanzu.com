@@ -21,7 +21,7 @@ params:
   # author: ["Me", "You"] # multiple authors
   images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "January 2, 2006"
-  defaultTheme: dark # dark, light
+  defaultTheme: auto # dark, light
   disableThemeToggle: false
 
   ShowReadingTime: true
@@ -50,7 +50,7 @@ params:
     safari_pinned_tab: "<link / abs url>"
 
   label:
-    text: "Home"
+    text: "WangBlog"
     icon: /apple-touch-icon.png
     iconHeight: 35
 
@@ -72,15 +72,15 @@ params:
   # home-info mode
   homeInfoParams:
     Title: "Hi there \U0001F44B"
-    Content: Welcome to my blog
+    Content: "知识整理与记录"
 
   socialIcons:
     # - name: x
     #   url: "https://x.com/"
-    # - name: stackoverflow
-    #   url: "https://stackoverflow.com"
+    - name: email
+      url: "mailto:i@wangyanzu.com"
     - name: github
-      url: "https://github.com/"
+      url: "https://github.com/wangyanzu"
 
   analytics:
     # google:
@@ -129,9 +129,9 @@ menu:
 pygmentsUseClasses: true
 markup:
   highlight:
-    noClasses: false
+    # noClasses: false
     # anchorLineNos: true
-    # codeFences: true
-    # guessSyntax: true
+    codeFences: true
+    guessSyntax: true
     lineNos: true
-    # style: monokai
+    style: monokai

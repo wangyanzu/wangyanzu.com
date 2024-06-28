@@ -1,6 +1,6 @@
 ---
 title: "使用lego为群晖自动续期https证书"
-date: 2024-06-27T23:30:00+00:00
+date: 2024-06-27T23:30:00+08:00
 # weight: 1
 # aliases: ["/first"]
 tags:
