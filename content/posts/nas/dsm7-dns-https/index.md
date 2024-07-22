@@ -30,7 +30,7 @@ ShowWordCount: true
 ShowRssButtonInSectionTermList: true
 UseHugoToc: true
 cover:
-    image: "https://raw.githubusercontent.com/go-acme/lego/master/docs/static/images/lego-logo.min.svg" # image path/url
+    image: "lego-logo.min.svg" # image path/url
     alt: "lego logo" # alt text
     caption: "lego logo" # display caption under cover
     relative: false # when using page bundles set this to true
