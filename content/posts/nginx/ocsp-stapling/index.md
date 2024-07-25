@@ -1,5 +1,5 @@
 ---
-title: "使用OCSP Stapling Proxy加速网站响应"
+title: "使用OCSP Stapling Proxy加速NGINX网站响应"
 date: 2024-07-24T22:30:00+08:00
 # weight: 1
 # aliases: ["/first"]
@@ -15,7 +15,7 @@ TocOpen: false
 draft: false
 hidemeta: false
 comments: false
-description: "使用OCSP Stapling Proxy加速网站响应"
+description: "介绍NGINX如何开启OCSP功能，并使用OCSP Stapling Proxy缓存OCSP响应"
 canonicalURL: "https://canonical.url/to/page"
 disableHLJS: true # to disable highlightjs
 disableShare: false
@@ -30,7 +30,7 @@ ShowRssButtonInSectionTermList: true
 UseHugoToc: true
 cover:
     image: "posts/nginx/logo.png" # image path/url
-    alt: "redis-logo" # alt text
+    alt: "nginx-logo" # alt text
     caption: "<text>" # display caption under cover
     relative: true # when using page bundles set this to true
     hidden: false # only hide on current single page
