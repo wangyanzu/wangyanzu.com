@@ -93,10 +93,10 @@ OCSP Response Data:
 openssl x509 -noout -ocsp_uri -in example.com.crt
 ```
 #### 启动服务器 docker 方式
-> 指定真实的OCSP服务器，并启动容器
-
+> 设置真实的OCSP服务器环境变量，并启动容器
+```bash
 docker run -d -p8080:8080 -e OCSP_HOST:"e5.o.lencr.org" iwangs/ocsp-proxy 
-
+```
 #### 调整NGINX配置
 ```
 ssl_stapling on;
@@ -108,5 +108,6 @@ ssl_stapling_responder http://10.2.2.2:8080/;
 
 #### 最后
 - 通常OCSP响应有效期为`7`天，即7天内，使用缓存装订都没有问题
-- nginx自身ocsp缓存为`1`小时（有效期对此时间有影响）
+- nginx自身ocsp缓存为`1`小时（有效期对此时间有影响），实际对ocsp代理的请求压力很低
 - 装订失败会回到不装订的响应，不会直接影响用户的请求响应
+- ocsp代理缓存超时后依然会`优先`响应缓存，然后异步刷新缓存，确保即使ocsp服务器连接失败也能正常响应
