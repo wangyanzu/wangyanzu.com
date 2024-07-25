@@ -29,7 +29,7 @@ ShowWordCount: true
 ShowRssButtonInSectionTermList: true
 UseHugoToc: true
 cover:
-    image: "posts/nginx-ocsp-stapling-proxy/nginx.gif" # image path/url
+    image: "posts/nginx/logo.png" # image path/url
     alt: "redis-logo" # alt text
     caption: "<text>" # display caption under cover
     relative: true # when using page bundles set this to true
@@ -101,8 +101,8 @@ docker run -d -p8080:8080 -e OCSP_HOST:"e5.o.lencr.org" iwangs/ocsp-proxy
 ```
 ssl_stapling on;
 ssl_stapling_responder http://10.2.2.2:8080/;
-resolver 223.5.5.5 114.114.114.114 valid=300s;
-resolver_timeout 5s;
+# resolver 223.5.5.5 114.114.114.114 valid=300s;
+# resolver_timeout 5s;
 ```
 在`http`或者`server`增加以上配置，请求自己的OCSP代理服务器。
 
